@@ -78,3 +78,21 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda_12.2.0_535.54.03_linux.run
 sudo sh cuda_12.2.0_535.54.03_linux.run
 ```
+
+## Setup Proxy
+```bash
+# Use Surge
+export https_proxy=http://192.168.124.14:6152;export http_proxy=http://192.168.124.14:6152;export all_proxy=socks5://192.168.124.14:6153
+
+# Docker
+# https://docs.docker.com/network/proxy/
+# ~/.docker/config.json
+{
+ "proxies": {
+   "default": {
+     "httpProxy": "http://192.168.124.14:6152",
+     "httpsProxy": "http://192.168.124.14:6152"
+   }
+ }
+}
+```
