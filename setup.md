@@ -43,12 +43,28 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 ## Setup networkingMode for WSL2
 ```
-# https://blog.whileaway.io/posts/6165a07d/
+# Create a virtual switch (external, name Bridge)
+# https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/get-started/create-a-virtual-switch-for-hyper-v-virtual-machines?tabs=powershell#create-a-virtual-switch
+
+# C:\Users\username\.wslconfig
+
+[wsl2]
+networkingMode = bridged
+vmSwitch = Bridge
 ```
 
 ## Setup OpenSSH
 ```
 # https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows
+
+# set up authorized_keys
+$HOME/.ssh/authorized_keys
+
+# set up /etc/ssh/sshd_config
+Port 8413
+PermitRootLogin yes
+ListenAddress 0.0.0.0
+PasswordAuthentication yes
 ```
 
 ## Install Docker on Ubuntu 22.04
